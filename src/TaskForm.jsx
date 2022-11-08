@@ -1,0 +1,29 @@
+import { useState } from "react";
+
+function TaskForm({createTask}) {
+  const [title, setTitle] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    createTask(title);
+  };
+
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input 
+        type="text"
+        placeholder="Escribe tu tarea"
+        name="title"
+        onChange={(e) => {
+            setTitle(prevTitle => prevTitle = e.target.value);
+        }}
+      />
+
+      <button>Guardar</button>
+    </form>
+  );
+}
+
+export default TaskForm;
