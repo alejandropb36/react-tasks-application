@@ -2,11 +2,14 @@ import { useState } from "react";
 
 function TaskForm({createTask}) {
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    createTask(title);
+    createTask({title, description});
+    setTitle('');
+    setDescription('');
   };
 
 
@@ -19,7 +22,17 @@ function TaskForm({createTask}) {
         onChange={(e) => {
             setTitle(prevTitle => prevTitle = e.target.value);
         }}
+        value={title}
+        autoFocus
       />
+
+      <textarea name="description"
+        placeholder="Escribe la descripcion de la tarea"
+        onChange={(e) => {
+            setDescription(prevDescription => prevDescription = e.target.value);
+        }}
+        value={description}
+      ></textarea>
 
       <button>Guardar</button>
     </form>
